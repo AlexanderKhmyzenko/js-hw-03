@@ -1,36 +1,38 @@
-// Функция предикат
+// Оператор in и метод push
+// Напиши функцию getAllPropValues(array, prop), которая получает массив объектов и имя свойства.
 
-// Функция предикат возвращает true или false
+// Функция возвращает массив значений определенного свойства prop из каждого объекта в массиве.
 
-// Напиши функцию checkForSpam(message), принимающую 1 параметр message - строку.
-// Функция проверяет ее на содержание слов spam и sale.
-// Если нашли запрещенное слово то функция возвращает true, если запрещенных слов нет функция возвращает false.
-// Слова в строке могут быть в произвольном регистре.
+// Используй метод push для добавления значения в массив и оператор in для проверки наличия свойства в объекте.
 
-const checkForSpam = function (message = " ") {
-  const string = message.toLowerCase();
-  let contains = true;
-
-  console.log(string);
-
-  const message1 = string.includes("spam");
-  const message2 = string.includes("sale");
-  //   console.log(message1);
-  //   console.log(message2);
-
-  if (contains === message1) {
-    return true;
-  } else if (contains === message2) {
-    return true;
-  } else {
-    return false;
+function getAllPropValues(array, prop) {
+  "use strict";
+  const values = [];
+  for (const product of array) {
+    let value = product[prop];
+    if (prop in product) {
+      values.push(value);
+    }
   }
-};
+  return values;
+}
 
-console.log(checkForSpam("Latest technology news"));
+// Объекты и ожидаемый результат
+const products = [
+  { name: "Радар", price: 1300, quantity: 4 },
+  { name: "Радар", price: 1280, quantity: 2 },
+  { name: "Радар", price: 1320, quantity: 1 },
+  { name: "Сканер", price: 2700, quantity: 1 },
+  { name: "Сканер", price: 2500, quantity: 3 },
+  { name: "Дроид", price: 400, quantity: 7 },
+  { name: "Захват", price: 1200, quantity: 2 },
+];
 
-console.log(checkForSpam("JavaScript weekly newsletter"));
+console.log(getAllPropValues(products, "name"));
+// ['Радар', 'Радар', 'Радар', 'Сканер', 'Сканер', 'Дроид', 'Захват']
 
-console.log(checkForSpam("Get best sale offers now!"));
+console.log(getAllPropValues(products, "quantity"));
+// [4, 2, 1, 1, 3, 7, 2]
 
-console.log(checkForSpam("[SPAM] How to earn fast money?"));
+console.log(getAllPropValues(products, "category"));
+//  []
