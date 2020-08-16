@@ -1,18 +1,40 @@
-// Напиши функцию getItemsString(array), которая получает массив и возвращает строку,
-//   полученную из объединения(конкатенации) строк в формате
-// ${ номер элемента } - ${ значение элемента } \n, где \n - спецсимвол переноса.
+// CRUD для свойств объекта
+// С - create(создать)
+// R - read(читать)
+// U - update(обновить)
+// D - delete (удалить)
+// Напиши скрипт, который, для объекта user, последовательно:
 
-// Нумерация должна начинаться с 1. К примеру для первого элемента массива['Mango', 'Poly', 'Ajax']
-// с индексом 0 будет выведено '1 - Mango', а для индекса 2 выведет '3 - Ajax'.
+// добавляет поле 'mood' со значением 'happy'
+// добавляет поле 'full time' со значением true
+// заменяет значение 'hobby' на 'skydiving'
+// заменяет значение 'premium' на false
+// в переменную message записывает содержимое объекта user:
+// для переменной keys присваивает массив свойств объекта, используя метод Object.keys()
+// с помощью оператора for...of
+// в формате ключ: значение
+// c переносом строки('\n')
 
-// Используйте вспомогательную переменную result для добавления(конкатенации) строк внутри цикла for
-
-const getItemsString = function (array) {
-  let result = "";
-  for (let i = 0; i < array.length; i += 1) {
-    result += `${i + 1} - ${array[i]}\n`;
-  }
-  return result;
+let message = "";
+const user = {
+  age: 20,
+  hobby: "html",
+  name: "Mango",
+  premium: true,
 };
+console.log(user);
 
-console.log(getItemsString(["Mango", "Poly", "Ajax", "Lux", "Jay", "Kong"]));
+user.hobby = "skydiving";
+user.premium = false;
+user.mood = "happy";
+user["full time"] = true;
+
+console.log(user);
+
+const keys = Object.keys(user);
+console.log(keys);
+
+for (const key of keys) {
+  message += `${key}  :  ${user[key]}\n`;
+}
+console.log(message);
